@@ -2,6 +2,12 @@ package org.christopherfrantz.dbscan.metrics;
 
 import org.christopherfrantz.dbscan.DistanceMetric;
 
+/**
+ * Distance metric implementation for numeric values.
+ * 
+ * @author Christopher Frantz <cf@christopherfrantz.org>
+ *
+ */
 public class DistanceMetricNumbers implements DistanceMetric<Number>{
 
 	@Override
