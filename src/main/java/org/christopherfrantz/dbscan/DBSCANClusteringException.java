@@ -3,7 +3,7 @@ package org.christopherfrantz.dbscan;
 /**
  * Exception thrown by DBSCANClusterer.
  * 
- * @author Christopher Frantz <cf@christopherfrantz.org>
+ * @author <a href="mailto:cf@christopherfrantz.org>Christopher Frantz</a>
  *
  */
 public class DBSCANClusteringException extends Exception {

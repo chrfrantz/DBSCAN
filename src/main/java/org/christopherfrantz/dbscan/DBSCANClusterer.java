@@ -22,7 +22,7 @@ import java.util.HashSet;
  * 
  * See tests and metrics for example implementation and use.
  * 
- * @author Christopher Frantz <cf@christopherfrantz.org>
+ * @author <a href="mailto:cf@christopherfrantz.org>Christopher Frantz</a>
  *
  * @param <V> Input value type
  */
@@ -30,19 +30,19 @@ public class DBSCANClusterer<V> {
 
 	/** maximum distance of values to be considered as cluster */
 	private double epsilon = 1f;
-	
+
 	/** minimum number of members to consider cluster */
 	private int minimumNumberOfClusterMembers = 2;
-	
+
 	/** distance metric applied for clustering **/
 	private DistanceMetric<V> metric = null;
-	
+
 	/** internal list of input values to be clustered */
 	private ArrayList<V> inputValues = null;
 
 	/** index maintaining visited points */
 	private HashSet<V> visitedPoints = new HashSet<V>();
-	
+
 	/**
 	 * Creates a DBSCAN clusterer instance. 
 	 * Upon instantiation, call {@link #performClustering()} 
@@ -54,26 +54,26 @@ public class DBSCANClusterer<V> {
 	 * @param metric Metric implementation to determine distance
 	 * @throws DBSCANClusteringException 
 	 */
-	public DBSCANClusterer(Collection<V> inputValues, int minNumElements, double maxDistance, DistanceMetric<V> metric) throws DBSCANClusteringException {
+	public DBSCANClusterer(final Collection<V> inputValues, int minNumElements, double maxDistance, DistanceMetric<V> metric) throws DBSCANClusteringException {
 		setInputValues(inputValues);
 		setMinimalNumberOfMembersForCluster(minNumElements);
 		setMaximalDistanceOfClusterMembers(maxDistance);
 		setDistanceMetric(metric);
 	}
-	
+
 	/**
 	 * Sets the distance metric
 	 * 
 	 * @param metric
 	 * @throws DBSCANClusteringException 
 	 */
-	public void setDistanceMetric(DistanceMetric<V> metric) throws DBSCANClusteringException {
+	public void setDistanceMetric(final DistanceMetric<V> metric) throws DBSCANClusteringException {
 		if (metric == null) {
 			throw new DBSCANClusteringException("DBSCAN: Distance metric has not been specified (null).");
 		}
 		this.metric = metric;
 	}
-	
+
 	/**
 	 * Sets a collection of input values to be clustered.
 	 * Repeated call overwrite the original input values.
@@ -81,20 +81,20 @@ public class DBSCANClusterer<V> {
 	 * @param collection
 	 * @throws DBSCANClusteringException 
 	 */
-	public void setInputValues(Collection<V> collection) throws DBSCANClusteringException {
+	public void setInputValues(final Collection<V> collection) throws DBSCANClusteringException {
 		if (collection == null) {
 			throw new DBSCANClusteringException("DBSCAN: List of input values is null.");
 		}
 		this.inputValues = new ArrayList<V>(collection);
 	}
-	
+
 	/**
 	 * Sets the minimal number of members to consider points of close proximity
 	 * clustered.
 	 * 
 	 * @param minimalNumberOfMembers
 	 */
-	public void setMinimalNumberOfMembersForCluster(int minimalNumberOfMembers) {
+	public void setMinimalNumberOfMembersForCluster(final int minimalNumberOfMembers) {
 		this.minimumNumberOfClusterMembers = minimalNumberOfMembers;
 	}
 
@@ -104,10 +104,10 @@ public class DBSCANClusterer<V> {
 	 * 
 	 * @param maximalDistance
 	 */
-	public void setMaximalDistanceOfClusterMembers(double maximalDistance) {
+	public void setMaximalDistanceOfClusterMembers(final double maximalDistance) {
 		this.epsilon = maximalDistance;
 	}
-	
+
 	/**
 	 * Determines the neighbours of a given input value.
 	 * 
@@ -115,7 +115,7 @@ public class DBSCANClusterer<V> {
 	 * @return list of neighbours
 	 * @throws DBSCANClusteringException 
 	 */
-	private ArrayList<V> getNeighbours(V inputValue) throws DBSCANClusteringException {
+	private ArrayList<V> getNeighbours(final V inputValue) throws DBSCANClusteringException {
 		ArrayList<V> neighbours = new ArrayList<V>();
 		for(int i=0; i<inputValues.size(); i++) {
 			V candidate = inputValues.get(i);
@@ -125,7 +125,7 @@ public class DBSCANClusterer<V> {
 		}
 		return neighbours;
 	}
-	
+
 	/**
 	 * Merges the elements of the right collection to the left one and returns
 	 * the combination.
@@ -134,8 +134,8 @@ public class DBSCANClusterer<V> {
 	 * @param neighbours2 right collection
 	 * @return Modified left collection
 	 */
-	private ArrayList<V> mergeRightToLeftCollection(ArrayList<V> neighbours1,
-			ArrayList<V> neighbours2) {
+	private ArrayList<V> mergeRightToLeftCollection(final ArrayList<V> neighbours1,
+			final ArrayList<V> neighbours2) {
 		for (int i = 0; i < neighbours2.size(); i++) {
 			V tempPt = neighbours2.get(i);
 			if (!neighbours1.contains(tempPt)) {
@@ -144,7 +144,7 @@ public class DBSCANClusterer<V> {
 		}
 		return neighbours1;
 	}
-	
+
 	/**
 	 * Applies the clustering and returns a collection of clusters (i.e. a list
 	 * of lists of the respective cluster members).
@@ -153,23 +153,23 @@ public class DBSCANClusterer<V> {
 	 * @throws DBSCANClusteringException 
 	 */
 	public ArrayList<ArrayList<V>> performClustering() throws DBSCANClusteringException {
-		
+
 		if (inputValues == null) {
 			throw new DBSCANClusteringException("DBSCAN: List of input values is null.");
 		}
-		
+
 		if (inputValues.isEmpty()) {
 			throw new DBSCANClusteringException("DBSCAN: List of input values is empty.");
 		}
-		
+
 		if (inputValues.size() < 2) {
 			throw new DBSCANClusteringException("DBSCAN: Less than two input values cannot be clustered. Number of input values: " + inputValues.size());
 		}
-		
+
 		if (epsilon < 0) {
 			throw new DBSCANClusteringException("DBSCAN: Maximum distance of input values cannot be negative. Current value: " + epsilon);
 		}
-		
+
 		if (minimumNumberOfClusterMembers < 2) {
 			throw new DBSCANClusteringException("DBSCAN: Clusters with less than 2 members don't make sense. Current value: " + minimumNumberOfClusterMembers);
 		}
@@ -208,5 +208,5 @@ public class DBSCANClusterer<V> {
 		}
 		return resultList;
 	}
-	
+
 }

@@ -5,7 +5,7 @@ import org.christopherfrantz.dbscan.DistanceMetric;
 /**
  * Distance metric implementation for numeric values.
  * 
- * @author Christopher Frantz <cf@christopherfrantz.org>
+ * @author <a href="mailto:cf@christopherfrantz.org>Christopher Frantz</a>
  *
  */
 public class DistanceMetricNumbers implements DistanceMetric<Number>{
