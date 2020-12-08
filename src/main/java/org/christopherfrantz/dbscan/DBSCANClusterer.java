@@ -8,7 +8,7 @@ import java.util.HashSet;
  * Implementation of density-based clustering algorithm DBSCAN.
  * 
  * Original Publication: 
- * Ester, Martin; Kriegel, Hans-Peter; Sander, Jörg; Xu, Xiaowei (1996). 
+ * Ester, Martin; Kriegel, Hans-Peter; Sander, JÃ¶rg; Xu, Xiaowei (1996). 
  * Simoudis, Evangelos; Han, Jiawei; Fayyad, Usama M., eds. 
  * A density-based algorithm for discovering clusters in large spatial 
  * databases with noise. Proceedings of the Second International Conference 
