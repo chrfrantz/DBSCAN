@@ -65,7 +65,7 @@ public class DBSCANClusterer<V> {
     /**
      * Sets the distance metric
      * 
-     * @param metric
+     * @param metric Distance metric to be set
      * @throws DBSCANClusteringException 
      */
     public void setDistanceMetric(final DistanceMetric<V> metric) throws DBSCANClusteringException {
@@ -77,9 +77,9 @@ public class DBSCANClusterer<V> {
 
     /**
      * Sets a collection of input values to be clustered.
-     * Repeated call overwrite the original input values.
+     * Repeated calls overwrite the original input values.
      * 
-     * @param collection
+     * @param collection Input values to be clustered
      * @throws DBSCANClusteringException 
      */
     public void setInputValues(final Collection<V> collection) throws DBSCANClusteringException {
@@ -93,7 +93,7 @@ public class DBSCANClusterer<V> {
      * Sets the minimal number of members to consider points of close proximity
      * clustered.
      * 
-     * @param minimalNumberOfMembers
+     * @param minimalNumberOfMembers Minimum number of members to constitute a cluster
      */
     public void setMinimalNumberOfMembersForCluster(final int minimalNumberOfMembers) {
         this.minimumNumberOfClusterMembers = minimalNumberOfMembers;
@@ -103,7 +103,7 @@ public class DBSCANClusterer<V> {
      * Sets the maximal distance members of the same cluster can have while
      * still be considered in the same cluster.
      * 
-     * @param maximalDistance
+     * @param maximalDistance Maximum distance between individual members
      */
     public void setMaximalDistanceOfClusterMembers(final double maximalDistance) {
         this.epsilon = maximalDistance;
@@ -113,7 +113,7 @@ public class DBSCANClusterer<V> {
      * Determines the neighbours of a given input value.
      * 
      * @param inputValue Input value for which neighbours are to be determined
-     * @return list of neighbours
+     * @return List of neighbours for a given input value
      * @throws DBSCANClusteringException 
      */
     private ArrayList<V> getNeighbours(final V inputValue) throws DBSCANClusteringException {
@@ -147,10 +147,10 @@ public class DBSCANClusterer<V> {
     }
 
     /**
-     * Applies the clustering and returns a collection of clusters (i.e. a list
+     * Applies the clustering and returns a collection of clusters (i.e., a list
      * of lists of the respective cluster members).
      * 
-     * @return
+     * @return Collection of clusters identified as part of the clustering process
      * @throws DBSCANClusteringException 
      */
     public ArrayList<ArrayList<V>> performClustering() throws DBSCANClusteringException {

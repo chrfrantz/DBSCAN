@@ -5,7 +5,7 @@ Lightweight Java implementation of density-based clustering algorithm DBSCAN
 
 You can download the latest jar file from the releases page.
 
-To build the library, you can either compile the sources manually or use maven (`mvn package`).
+To build the library, you can either compile the sources manually or use maven (`mvn clean package`).
 
 ## Usage
 
